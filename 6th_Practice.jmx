@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="DOMAIN" elementType="Argument">
+            <stringProp name="Argument.name">DOMAIN</stringProp>
+            <stringProp name="Argument.value">${__P(DOMAIN,192.168.56.101)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="PROTOCOL" elementType="Argument">
+            <stringProp name="Argument.name">PROTOCOL</stringProp>
+            <stringProp name="Argument.value">${__P(PROTOCOL,http)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="USERS_COUNT" elementType="Argument">
+            <stringProp name="Argument.name">USERS_COUNT</stringProp>
+            <stringProp name="Argument.value">${__P(USERS_COUNT,2)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="RAMP_UP" elementType="Argument">
+            <stringProp name="Argument.name">RAMP_UP</stringProp>
+            <stringProp name="Argument.value">${__P(RAMP_UP,1)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="LOOP_COUNT" elementType="Argument">
+            <stringProp name="Argument.name">LOOP_COUNT</stringProp>
+            <stringProp name="Argument.value">${__P(LOOP_COUNT,1)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="POSTS_COUNT" elementType="Argument">
+            <stringProp name="Argument.name">POSTS_COUNT</stringProp>
+            <stringProp name="Argument.value">${__P(POSTS_COUNT,10)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="TITLE_FOR_POST" elementType="Argument">
+            <stringProp name="Argument.name">TITLE_FOR_POST</stringProp>
+            <stringProp name="Argument.value">${__RandomString(9,qwertyuiopasdfghjklzxcvbnm,TITLE_FOR_POST)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="POST_DATA" elementType="Argument">
+            <stringProp name="Argument.name">POST_DATA</stringProp>
+            <stringProp name="Argument.value">${__P(POST_DATE,Lorem ipsum)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="POST_DATE" elementType="Argument">
+            <stringProp name="Argument.name">POST_DATE</stringProp>
+            <stringProp name="Argument.value">${__RandomDate(,,2022-04-19 13:33,,)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="USER_NAME" elementType="Argument">
+            <stringProp name="Argument.name">USER_NAME</stringProp>
+            <stringProp name="Argument.value">${__P(USER_NAME,editor)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="USER_PASSWORD" elementType="Argument">
+            <stringProp name="Argument.name">USER_PASSWORD</stringProp>
+            <stringProp name="Argument.value">${__P(USER_PASSWORD,editor)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${LOOP_COUNT}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${USERS_COUNT}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">${RAMP_UP}</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${DOMAIN}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">${PROTOCOL}</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path"></stringProp>
+          <stringProp name="HTTPSampler.concurrentPool">6</stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </ConfigTestElement>
+        <hashTree/>
+        <CookieManager guiclass="CookiePanel" testclass="CookieManager" testname="HTTP Cookie Manager" enabled="true">
+          <collectionProp name="CookieManager.cookies"/>
+          <boolProp name="CookieManager.clearEachIteration">false</boolProp>
+          <boolProp name="CookieManager.controlledByThreadGroup">false</boolProp>
+        </CookieManager>
+        <hashTree/>
+        <CacheManager guiclass="CacheManagerGui" testclass="CacheManager" testname="HTTP Cache Manager" enabled="true">
+          <boolProp name="clearEachIteration">false</boolProp>
+          <boolProp name="useExpires">true</boolProp>
+          <boolProp name="CacheManager.controlledByThread">false</boolProp>
+        </CacheManager>
+        <hashTree/>
+        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+          <collectionProp name="HeaderManager.headers"/>
+        </HeaderManager>
+        <hashTree/>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Home page" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain"></stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">blog</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (PAGE_NUMBER)" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">PAGE_NUMBER</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;li class=&quot;PagerLink&quot;&gt;&lt;a href=&quot;\/blog\?page=\d+&quot;&gt;(\d+)&lt;\/a&gt;&lt;\/li&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (FIRST_POST)" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">FIRST_POST</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;article class=&quot;post post-home&quot; id=&quot;post0&quot;&gt;      &lt;header class=&quot;post-header&quot;&gt;         &lt;h2 class=&quot;post-title&quot;&gt;             &lt;a href=&quot;(\/blog\/post\/.*)&quot;&gt;.*&lt;\/a&gt;         &lt;\/h2&gt;         &lt;div class=&quot;post-info clearfix&quot;&gt;             &lt;span class=&quot;post-date&quot;&gt;&lt;i class=&quot;icon-calendar&quot;&gt;&lt;\/i&gt;.*&lt;\/span&gt;             &lt;span class=&quot;post-author&quot;&gt;&lt;i class=&quot; icon-user&quot;&gt;&lt;\/i&gt;&lt;a href=&quot;.*r&quot;&gt;.*&lt;\/a&gt;&lt;\/span&gt;             &lt;span class=&quot;post-category&quot;&gt;&lt;i class=&quot; icon-folder&quot;&gt;&lt;\/i&gt;&lt;a href=&quot;.*&quot;&gt;.*&lt;\/a&gt;&lt;\/span&gt;                           &lt;a rel=&quot;nofollow&quot; class=&quot;pull-right &quot; href=&quot;.*&quot;&gt;                 &lt;i class=&quot;icon-comment&quot;&gt;&lt;\/i&gt;\(\d+\)             &lt;\/a&gt;                      &lt;\/div&gt;     &lt;\/header&gt;     &lt;section class=&quot;post-body text&quot;&gt;         &lt;p&gt;.*&lt;\/p&gt;              &lt;\/section&gt;      &lt;\/article&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (RANDOM_POST)" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">RANDOM_POST</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/post\/.*)&quot;&gt;.*&lt;\/a&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor (SELECT_DATE)" enabled="true">
+            <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+            <stringProp name="RegexExtractor.refname">SELECT_DATE</stringProp>
+            <stringProp name="RegexExtractor.regex">&lt;a href=&quot;(\/blog\/\d+\/\d+\/\d+\/default)&quot; class=&quot;exist&quot;&gt;\d+&lt;\/a&gt;</stringProp>
+            <stringProp name="RegexExtractor.template">$1$</stringProp>
+            <stringProp name="RegexExtractor.default">NOT_FOUND</stringProp>
+            <stringProp name="RegexExtractor.match_number">0</stringProp>
+          </RegexExtractor>
+          <hashTree/>
+          <XPathExtractor guiclass="XPathExtractorGui" testclass="XPathExtractor" testname="XPath Extractor" enabled="true">
+            <stringProp name="XPathExtractor.default"></stringProp>
+            <stringProp name="XPathExtractor.refname">FIRST_POST_XP</stringProp>
+            <stringProp name="XPathExtractor.matchNumber">-1</stringProp>
+            <stringProp name="XPathExtractor.xpathQuery">/html[@lang=&quot;en&quot;]/body[@class=&quot;ltr&quot;]/form[@method=&quot;post&quot;]/div[2]/div[@class=&quot;container&quot;]/div[@class=&quot;content-wrapper float-left&quot;]/div[2]/article[1]/header[@class=&quot;post-header&quot;]/h2[@class=&quot;post-title&quot;]/a[@href=&quot;/blog/post/apiffkgzz&quot;]@href</stringProp>
+            <boolProp name="XPathExtractor.validate">false</boolProp>
+            <boolProp name="XPathExtractor.tolerant">false</boolProp>
+            <boolProp name="XPathExtractor.namespace">false</boolProp>
+          </XPathExtractor>
+          <hashTree/>
+        </hashTree>
+        <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="bzm - Weighted Switch Controller" enabled="true">
+          <boolProp name="IsRandomChoice">false</boolProp>
+          <collectionProp name="Weights">
+            <collectionProp name="-1892534077">
+              <stringProp name="-1955043590">Open Home Page</stringProp>
+              <stringProp name="1572">15</stringProp>
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+            <collectionProp name="236594818">
+              <stringProp name="-1269029934">Open Predefined Date</stringProp>
+              <stringProp name="1629">30</stringProp>
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+            <collectionProp name="474087075">
+              <stringProp name="-1322414027">Open Random Date</stringProp>
+              <stringProp name="1567">10</stringProp>
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+            <collectionProp name="1682675372">
+              <stringProp name="1302304380">Search by Name</stringProp>
+              <stringProp name="1629">30</stringProp>
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+            <collectionProp name="-1353397081">
+              <stringProp name="400822073">Open Large Calendar</stringProp>
+              <stringProp name="1567">10</stringProp>
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+            <collectionProp name="263871361">
+              <stringProp name="411443561">Open Contacts</stringProp>
+              <stringProp name="53">5</stringProp>
+              <stringProp name="3569038">true</stringProp>
+            </collectionProp>
+          </collectionProp>
+        </com.blazemeter.jmeter.control.WeightedSwitchController>
+        <hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Home Page" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Home Page" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain"></stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol"></stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">blog</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree/>
+            <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Open random page or not (bzm - Weighted Switch Controller)" enabled="true">
+              <boolProp name="IsRandomChoice">false</boolProp>
+              <collectionProp name="Weights">
+                <collectionProp name="-597849803">
+                  <stringProp name="2104398169">Open Random page(Transaction Controller)</stringProp>
+                  <stringProp name="48625">100</stringProp>
+                  <stringProp name="3569038">true</stringProp>
+                </collectionProp>
+                <collectionProp name="372618988">
+                  <stringProp name="-938164016">Open post or no (bzm - Weighted Switch Controller)</stringProp>
+                  <stringProp name="48625">100</stringProp>
+                  <stringProp name="3569038">true</stringProp>
+                </collectionProp>
+              </collectionProp>
+            </com.blazemeter.jmeter.control.WeightedSwitchController>
+            <hashTree>
+              <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Random page(Transaction Controller)" enabled="true">
+                <boolProp name="TransactionController.includeTimers">false</boolProp>
+                <boolProp name="TransactionController.parent">true</boolProp>
+              </TransactionController>
+              <hashTree>
+                <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open Random page" enabled="true">
+                  <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                    <collectionProp name="Arguments.arguments">
+                      <elementProp name="page" elementType="HTTPArgument">
+                        <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                        <stringProp name="Argument.name">page</stringProp>
+                        <stringProp name="Argument.value">${PAGE_NUMBER}</stringProp>
+                        <stringProp name="Argument.metadata">=</stringProp>
+                        <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                      </elementProp>
+                    </collectionProp>
+                  </elementProp>
+                  <stringProp name="HTTPSampler.domain">192.168.56.101</stringProp>
+                  <stringProp name="HTTPSampler.port"></stringProp>
+                  <stringProp name="HTTPSampler.protocol">http</stringProp>
+                  <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                  <stringProp name="HTTPSampler.path">/blog/</stringProp>
+                  <stringProp name="HTTPSampler.method">GET</stringProp>
+                  <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                  <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                  <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                  <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                  <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                  <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                  <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                </HTTPSamplerProxy>
+                <hashTree>
+                  <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                    <collectionProp name="HeaderManager.headers">
+                      <elementProp name="Referer" elementType="Header">
+                        <stringProp name="Header.name">Referer</stringProp>
+                        <stringProp name="Header.value">http://192.168.56.101/blog/</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept-Language" elementType="Header">
+                        <stringProp name="Header.name">Accept-Language</stringProp>
+                        <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                      </elementProp>
+                      <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                        <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                        <stringProp name="Header.value">1</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept-Encoding" elementType="Header">
+                        <stringProp name="Header.name">Accept-Encoding</stringProp>
+                        <stringProp name="Header.value">gzip, deflate</stringProp>
+                      </elementProp>
+                      <elementProp name="User-Agent" elementType="Header">
+                        <stringProp name="Header.name">User-Agent</stringProp>
+                        <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                      </elementProp>
+                      <elementProp name="Accept" elementType="Header">
+                        <stringProp name="Header.name">Accept</stringProp>
+                        <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                      </elementProp>
+                    </collectionProp>
+                  </HeaderManager>
+                  <hashTree/>
+                </hashTree>
+                <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Open post or no (bzm - Weighted Switch Controller)" enabled="true">
+                  <boolProp name="IsRandomChoice">false</boolProp>
+                  <collectionProp name="Weights">
+                    <collectionProp name="1664896131">
+                      <stringProp name="-467544562">Open post (bzm - Weighted Switch Controller)</stringProp>
+                      <stringProp name="1784">80</stringProp>
+                      <stringProp name="3569038">true</stringProp>
+                    </collectionProp>
+                    <collectionProp name="70744426">
+                      <stringProp name="69819">End</stringProp>
+                      <stringProp name="1598">20</stringProp>
+                      <stringProp name="3569038">true</stringProp>
+                    </collectionProp>
+                  </collectionProp>
+                </com.blazemeter.jmeter.control.WeightedSwitchController>
+                <hashTree>
+                  <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Open post (bzm - Weighted Switch Controller)" enabled="true">
+                    <boolProp name="IsRandomChoice">false</boolProp>
+                    <collectionProp name="Weights">
+                      <collectionProp name="947726965">
+                        <stringProp name="1306008871">Open random post</stringProp>
+                        <stringProp name="1727">65</stringProp>
+                        <stringProp name="3569038">true</stringProp>
+                      </collectionProp>
+                      <collectionProp name="-535757790">
+                        <stringProp name="-2092180602">Open first post</stringProp>
+                        <stringProp name="48625">100</stringProp>
+                        <stringProp name="3569038">true</stringProp>
+                      </collectionProp>
+                    </collectionProp>
+                  </com.blazemeter.jmeter.control.WeightedSwitchController>
+                  <hashTree>
+                    <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open random post" enabled="true">
+                      <boolProp name="TransactionController.includeTimers">false</boolProp>
+                      <boolProp name="TransactionController.parent">true</boolProp>
+                    </TransactionController>
+                    <hashTree>
+                      <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open random post" enabled="true">
+                        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                          <collectionProp name="Arguments.arguments"/>
+                        </elementProp>
+                        <stringProp name="HTTPSampler.domain"></stringProp>
+                        <stringProp name="HTTPSampler.port"></stringProp>
+                        <stringProp name="HTTPSampler.protocol"></stringProp>
+                        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                        <stringProp name="HTTPSampler.path">${RANDOM_POST}</stringProp>
+                        <stringProp name="HTTPSampler.method">GET</stringProp>
+                        <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                        <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                        <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                        <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                        <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      </HTTPSamplerProxy>
+                      <hashTree>
+                        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                          <collectionProp name="HeaderManager.headers">
+                            <elementProp name="Referer" elementType="Header">
+                              <stringProp name="Header.name">Referer</stringProp>
+                              <stringProp name="Header.value">http://192.168.56.101/blog/</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Language" elementType="Header">
+                              <stringProp name="Header.name">Accept-Language</stringProp>
+                              <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                            </elementProp>
+                            <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                              <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                              <stringProp name="Header.value">1</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Encoding" elementType="Header">
+                              <stringProp name="Header.name">Accept-Encoding</stringProp>
+                              <stringProp name="Header.value">gzip, deflate</stringProp>
+                            </elementProp>
+                            <elementProp name="User-Agent" elementType="Header">
+                              <stringProp name="Header.name">User-Agent</stringProp>
+                              <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept" elementType="Header">
+                              <stringProp name="Header.name">Accept</stringProp>
+                              <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                            </elementProp>
+                          </collectionProp>
+                        </HeaderManager>
+                        <hashTree/>
+                      </hashTree>
+                      <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Add comment or not (bzm - Weighted Switch Controller)" enabled="true">
+                        <boolProp name="IsRandomChoice">false</boolProp>
+                        <collectionProp name="Weights">
+                          <collectionProp name="512597486">
+                            <stringProp name="-1679915457">Comment</stringProp>
+                            <stringProp name="1598">20</stringProp>
+                            <stringProp name="3569038">true</stringProp>
+                          </collectionProp>
+                          <collectionProp name="70750192">
+                            <stringProp name="69819">End</stringProp>
+                            <stringProp name="1784">80</stringProp>
+                            <stringProp name="3569038">true</stringProp>
+                          </collectionProp>
+                        </collectionProp>
+                      </com.blazemeter.jmeter.control.WeightedSwitchController>
+                      <hashTree>
+                        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Comment" enabled="true">
+                          <boolProp name="TransactionController.includeTimers">false</boolProp>
+                          <boolProp name="TransactionController.parent">true</boolProp>
+                        </TransactionController>
+                        <hashTree>
+                          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/post/lalala100-642" enabled="true">
+                            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                              <collectionProp name="Arguments.arguments">
+                                <elementProp name="__EVENTTARGET" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                                  <stringProp name="Argument.name">__EVENTTARGET</stringProp>
+                                  <stringProp name="Argument.value"></stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="__EVENTARGUMENT" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                                  <stringProp name="Argument.name">__EVENTARGUMENT</stringProp>
+                                  <stringProp name="Argument.value"></stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="__VIEWSTATE" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                                  <stringProp name="Argument.name">__VIEWSTATE</stringProp>
+                                  <stringProp name="Argument.value">DFvRAUatUZpm6WcF7SQ6hkFNiEKI7+Z4uaYJVKB34n/Ju4fkfQ8AcuZIiiW5cl1bWs443ZQE/+2GwhcaBhQRuAm2WVG/XOxSx9J5Dw/iBXulYbRx8d9gR8NjbDivOaGaZTxzbLWJ8XmdK622eoCjsjWZVXnxojL78TfpbOEDJmJLAuuPa1Wqj18beeSHKwjOEcBB3g==</stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="txtName" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                                  <stringProp name="Argument.name">txtName</stringProp>
+                                  <stringProp name="Argument.value"></stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="txtContent" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                                  <stringProp name="Argument.name">txtContent</stringProp>
+                                  <stringProp name="Argument.value"></stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="ctl00$cphBody$ucCommentList$hiddenReplyTo" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                                  <stringProp name="Argument.name">ctl00$cphBody$ucCommentList$hiddenReplyTo</stringProp>
+                                  <stringProp name="Argument.value"></stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="simpleCaptchaValue" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                                  <stringProp name="Argument.name">simpleCaptchaValue</stringProp>
+                                  <stringProp name="Argument.value"></stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="ctl00$cphBody$ucCommentList$hfCaptcha" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                                  <stringProp name="Argument.name">ctl00$cphBody$ucCommentList$hfCaptcha</stringProp>
+                                  <stringProp name="Argument.value">3a86dcaa-5014-4a8f-a632-e1ebf010b458</stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="__VIEWSTATEGENERATOR" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                                  <stringProp name="Argument.name">__VIEWSTATEGENERATOR</stringProp>
+                                  <stringProp name="Argument.value">0DB23B8C</stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="__CALLBACKID" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                                  <stringProp name="Argument.name">__CALLBACKID</stringProp>
+                                  <stringProp name="Argument.value">ctl00$cphBody$ucCommentList</stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="__CALLBACKPARAM" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                                  <stringProp name="Argument.name">__CALLBACKPARAM</stringProp>
+                                  <stringProp name="Argument.value">sdfdg-|-dsfgsdgdsg@gmail.com-|--|--|-dsfgdsgsdggfgfgsdfgsdfg-|-false-|-false-|-3a86dcaa-5014-4a8f-a632-e1ebf010b458-|--|--|--|--|-10</stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                                <elementProp name="__EVENTVALIDATION" elementType="HTTPArgument">
+                                  <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                                  <stringProp name="Argument.name">__EVENTVALIDATION</stringProp>
+                                  <stringProp name="Argument.value">OJGWywQ2TF3GnkF9dnrLPh9I78Q+MAPG1Orz3phwy85I9uf2OFUp+GK0+fn1QYyombtOsgFbPXMpPUMIJMeqCqbTV/bPIIQDbldTpwbC+F4l6/sc3ijHFLtB8PXP2MOYLD0Kr+DUcVgFbWsJdiecjrOWrgSLDn62KUkHKwrTmmcLobsm4YqWWWEK0EATVV4L4ZsQfXViWUxAfp+fb4Hw569WDWWGH+C+SPBg564bQtHJWQhVdVAksKa5R3Kp3hgIS8RNDboEHYxkv2iJpEFp7oJQl4FV0E1soGAX+gqlgiBainCzrRVYG+vGjgZXPeyDfStILZEekTeBiTepfyiS/ld0My4dt5fGwCcXSsSdtDTmsnT7Flif96onT6xg6dHKUEZIKrmO3CIuVqHh+7+s6xmgVaCJBQqgdA61rnwEEtDxseEbfyQfcy8bRRBVWSnsntguYTg1RjTAfQtIeTKhVo9/FgGpJMVOKokUXiHeCexTbz7WKYOyiCsbZMsWXl3owSFpoJQshqTWMJJ4bmFhx1P43KiA+I1By1cIQOq7VcUciYF2nw5//VyjImR0sNZjiMJBZM7Nm0JNDWGhDYjTEUHGFY6eU+z1e132qq8hkTKCE+LdpfApFiCeJNMrxVMZbInVk2g2UEWCvkn7CCYgViHWbjOOwJZrF3UElLB6sob/Yn2Pc4IVocfmyr6xFcCCcoouYYTSTsUDeaAvajl3EHv9RHzt+Q6m9A+4dH0HTjSyg1pLT65S7xlYG6YrQBKcP5dhHZ76LZ403K/C0d9bXm3vLAHXvWLiV9PAvOLcFv8pqTLWe2UcOmrYtJDJxZr5rLSwmv/axu7XsDDWQD99AKO0y3Tupz/wGtYKbSyFuzBw3szwBBoyhsSz8Dny3aHgoqkbBn8mIMR5ZMV5sE1uyEsplR3IB18IorN4LeACCh6rkY9Y4vAuwo4VQnxAsj+C82BlY7vjFc6AOGQEObCBkT0CZpeeG6hyTtgfXLdvAphgliJbb1ZLN2j+oom5npuEgixEeg==</stringProp>
+                                  <stringProp name="Argument.metadata">=</stringProp>
+                                  <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                                </elementProp>
+                              </collectionProp>
+                            </elementProp>
+                            <stringProp name="HTTPSampler.domain"></stringProp>
+                            <stringProp name="HTTPSampler.port"></stringProp>
+                            <stringProp name="HTTPSampler.protocol"></stringProp>
+                            <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+                            <stringProp name="HTTPSampler.path">/blog/post/lalala100</stringProp>
+                            <stringProp name="HTTPSampler.method">POST</stringProp>
+                            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                          </HTTPSamplerProxy>
+                          <hashTree>
+                            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                              <collectionProp name="HeaderManager.headers">
+                                <elementProp name="Referer" elementType="Header">
+                                  <stringProp name="Header.name">Referer</stringProp>
+                                  <stringProp name="Header.value">http://192.168.56.101/blog/post/lalala100</stringProp>
+                                </elementProp>
+                                <elementProp name="Accept-Language" elementType="Header">
+                                  <stringProp name="Header.name">Accept-Language</stringProp>
+                                  <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                                </elementProp>
+                                <elementProp name="Origin" elementType="Header">
+                                  <stringProp name="Header.name">Origin</stringProp>
+                                  <stringProp name="Header.value">http://192.168.56.101</stringProp>
+                                </elementProp>
+                                <elementProp name="Content-Type" elementType="Header">
+                                  <stringProp name="Header.name">Content-Type</stringProp>
+                                  <stringProp name="Header.value">application/x-www-form-urlencoded; charset=utf-8</stringProp>
+                                </elementProp>
+                                <elementProp name="Accept-Encoding" elementType="Header">
+                                  <stringProp name="Header.name">Accept-Encoding</stringProp>
+                                  <stringProp name="Header.value">gzip, deflate</stringProp>
+                                </elementProp>
+                                <elementProp name="User-Agent" elementType="Header">
+                                  <stringProp name="Header.name">User-Agent</stringProp>
+                                  <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                                </elementProp>
+                                <elementProp name="Accept" elementType="Header">
+                                  <stringProp name="Header.name">Accept</stringProp>
+                                  <stringProp name="Header.value">*/*</stringProp>
+                                </elementProp>
+                              </collectionProp>
+                            </HeaderManager>
+                            <hashTree/>
+                          </hashTree>
+                        </hashTree>
+                        <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="End" enabled="true">
+                          <boolProp name="TransactionController.includeTimers">false</boolProp>
+                          <boolProp name="TransactionController.parent">true</boolProp>
+                        </TransactionController>
+                        <hashTree/>
+                      </hashTree>
+                    </hashTree>
+                    <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open first post" enabled="true">
+                      <boolProp name="TransactionController.includeTimers">false</boolProp>
+                      <boolProp name="TransactionController.parent">true</boolProp>
+                    </TransactionController>
+                    <hashTree>
+                      <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Open first post" enabled="true">
+                        <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                          <collectionProp name="Arguments.arguments"/>
+                        </elementProp>
+                        <stringProp name="HTTPSampler.domain"></stringProp>
+                        <stringProp name="HTTPSampler.port"></stringProp>
+                        <stringProp name="HTTPSampler.protocol"></stringProp>
+                        <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+                        <stringProp name="HTTPSampler.path">${FIRST_POST_XP}</stringProp>
+                        <stringProp name="HTTPSampler.method">GET</stringProp>
+                        <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+                        <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+                        <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+                        <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+                        <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+                        <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                        <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      </HTTPSamplerProxy>
+                      <hashTree>
+                        <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                          <collectionProp name="HeaderManager.headers">
+                            <elementProp name="Referer" elementType="Header">
+                              <stringProp name="Header.name">Referer</stringProp>
+                              <stringProp name="Header.value">http://192.168.56.101/blog/</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Language" elementType="Header">
+                              <stringProp name="Header.name">Accept-Language</stringProp>
+                              <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                            </elementProp>
+                            <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                              <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                              <stringProp name="Header.value">1</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept-Encoding" elementType="Header">
+                              <stringProp name="Header.name">Accept-Encoding</stringProp>
+                              <stringProp name="Header.value">gzip, deflate</stringProp>
+                            </elementProp>
+                            <elementProp name="User-Agent" elementType="Header">
+                              <stringProp name="Header.name">User-Agent</stringProp>
+                              <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                            </elementProp>
+                            <elementProp name="Accept" elementType="Header">
+                              <stringProp name="Header.name">Accept</stringProp>
+                              <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                            </elementProp>
+                          </collectionProp>
+                        </HeaderManager>
+                        <hashTree/>
+                      </hashTree>
+                      <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Add comment or not (Module Controller)" enabled="true">
+                        <collectionProp name="ModuleController.node_path">
+                          <stringProp name="764597751">Test Plan</stringProp>
+                          <stringProp name="764597751">Test Plan</stringProp>
+                          <stringProp name="-1948168983">Thread Group</stringProp>
+                          <stringProp name="2100247133">bzm - Weighted Switch Controller</stringProp>
+                          <stringProp name="-1955043590">Open Home Page</stringProp>
+                          <stringProp name="904157956">Open random page or not (bzm - Weighted Switch Controller)</stringProp>
+                          <stringProp name="2104398169">Open Random page(Transaction Controller)</stringProp>
+                          <stringProp name="-938164016">Open post or no (bzm - Weighted Switch Controller)</stringProp>
+                          <stringProp name="-467544562">Open post (bzm - Weighted Switch Controller)</stringProp>
+                          <stringProp name="1306008871">Open random post</stringProp>
+                          <stringProp name="1156708654">Add comment or not (bzm - Weighted Switch Controller)</stringProp>
+                        </collectionProp>
+                      </ModuleController>
+                      <hashTree/>
+                    </hashTree>
+                  </hashTree>
+                  <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="End" enabled="true">
+                    <boolProp name="TransactionController.includeTimers">false</boolProp>
+                    <boolProp name="TransactionController.parent">false</boolProp>
+                  </TransactionController>
+                  <hashTree/>
+                </hashTree>
+              </hashTree>
+              <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post or no (Module Controller)" enabled="true">
+                <collectionProp name="ModuleController.node_path">
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="764597751">Test Plan</stringProp>
+                  <stringProp name="-1948168983">Thread Group</stringProp>
+                  <stringProp name="2100247133">bzm - Weighted Switch Controller</stringProp>
+                  <stringProp name="-1955043590">Open Home Page</stringProp>
+                  <stringProp name="904157956">Open random page or not (bzm - Weighted Switch Controller)</stringProp>
+                  <stringProp name="2104398169">Open Random page(Transaction Controller)</stringProp>
+                  <stringProp name="-938164016">Open post or no (bzm - Weighted Switch Controller)</stringProp>
+                </collectionProp>
+              </ModuleController>
+              <hashTree/>
+            </hashTree>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Predefined Date" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+              <stringProp name="delimiter">,</stringProp>
+              <stringProp name="fileEncoding">UTF-8</stringProp>
+              <stringProp name="filename">C:/Users/Serhii_Borysenko/Shared/FindeDate.csv</stringProp>
+              <boolProp name="ignoreFirstLine">true</boolProp>
+              <boolProp name="quotedData">false</boolProp>
+              <boolProp name="recycle">true</boolProp>
+              <stringProp name="shareMode">shareMode.all</stringProp>
+              <boolProp name="stopThread">false</boolProp>
+              <stringProp name="variableNames">date</stringProp>
+            </CSVDataSet>
+            <hashTree/>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Predefined Date" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">192.168.56.101</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/blog/${date}/default</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">http://192.168.56.101/blog/2022/04/28/default</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page or not (Module Controller)" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="-1948168983">Thread Group</stringProp>
+                <stringProp name="2100247133">bzm - Weighted Switch Controller</stringProp>
+                <stringProp name="-1955043590">Open Home Page</stringProp>
+                <stringProp name="904157956">Open random page or not (bzm - Weighted Switch Controller)</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Random Date" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Random Date" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">192.168.56.101</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">${SELECT_DATE}</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">http://192.168.56.101/blog/2022/04/28/default</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open random page or not (Module Controller)" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="-1948168983">Thread Group</stringProp>
+                <stringProp name="2100247133">bzm - Weighted Switch Controller</stringProp>
+                <stringProp name="-1955043590">Open Home Page</stringProp>
+                <stringProp name="904157956">Open random page or not (bzm - Weighted Switch Controller)</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Search by Name" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/search-388" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="q" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                    <stringProp name="Argument.name">q</stringProp>
+                    <stringProp name="Argument.value">jaabqrjtq</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">192.168.56.101</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/blog/search</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">http://192.168.56.101/blog/2022/04/26/default</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post or no (Module Controller)" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="-1948168983">Thread Group</stringProp>
+                <stringProp name="2100247133">bzm - Weighted Switch Controller</stringProp>
+                <stringProp name="-1955043590">Open Home Page</stringProp>
+                <stringProp name="904157956">Open random page or not (bzm - Weighted Switch Controller)</stringProp>
+                <stringProp name="2104398169">Open Random page(Transaction Controller)</stringProp>
+                <stringProp name="-938164016">Open post or no (bzm - Weighted Switch Controller)</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Large Calendar" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/calendar/default.aspx-370" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">192.168.56.101</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/blog/calendar/default.aspx</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">http://192.168.56.101/blog/?page=9</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <ModuleController guiclass="ModuleControllerGui" testclass="ModuleController" testname="Open post or no (Module Controller)" enabled="true">
+              <collectionProp name="ModuleController.node_path">
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="764597751">Test Plan</stringProp>
+                <stringProp name="-1948168983">Thread Group</stringProp>
+                <stringProp name="2100247133">bzm - Weighted Switch Controller</stringProp>
+                <stringProp name="-1955043590">Open Home Page</stringProp>
+                <stringProp name="904157956">Open random page or not (bzm - Weighted Switch Controller)</stringProp>
+                <stringProp name="2104398169">Open Random page(Transaction Controller)</stringProp>
+                <stringProp name="-938164016">Open post or no (bzm - Weighted Switch Controller)</stringProp>
+              </collectionProp>
+            </ModuleController>
+            <hashTree/>
+          </hashTree>
+          <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="Open Contacts" enabled="true">
+            <boolProp name="TransactionController.includeTimers">false</boolProp>
+            <boolProp name="TransactionController.parent">true</boolProp>
+          </TransactionController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="/blog/contact-399" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">192.168.56.101</stringProp>
+              <stringProp name="HTTPSampler.port"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
+              <stringProp name="HTTPSampler.path">/blog/contact</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+                <collectionProp name="HeaderManager.headers">
+                  <elementProp name="Referer" elementType="Header">
+                    <stringProp name="Header.name">Referer</stringProp>
+                    <stringProp name="Header.value">http://192.168.56.101/blog/contact</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Language" elementType="Header">
+                    <stringProp name="Header.name">Accept-Language</stringProp>
+                    <stringProp name="Header.value">uk-UA,uk;q=0.8,en-US;q=0.5,en;q=0.3</stringProp>
+                  </elementProp>
+                  <elementProp name="Upgrade-Insecure-Requests" elementType="Header">
+                    <stringProp name="Header.name">Upgrade-Insecure-Requests</stringProp>
+                    <stringProp name="Header.value">1</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept-Encoding" elementType="Header">
+                    <stringProp name="Header.name">Accept-Encoding</stringProp>
+                    <stringProp name="Header.value">gzip, deflate</stringProp>
+                  </elementProp>
+                  <elementProp name="User-Agent" elementType="Header">
+                    <stringProp name="Header.name">User-Agent</stringProp>
+                    <stringProp name="Header.value">Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:99.0) Gecko/20100101 Firefox/99.0</stringProp>
+                  </elementProp>
+                  <elementProp name="Accept" elementType="Header">
+                    <stringProp name="Header.name">Accept</stringProp>
+                    <stringProp name="Header.value">text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </HeaderManager>
+              <hashTree/>
+            </hashTree>
+            <TransactionController guiclass="TransactionControllerGui" testclass="TransactionController" testname="End" enabled="true">
+              <boolProp name="TransactionController.includeTimers">false</boolProp>
+              <boolProp name="TransactionController.parent">false</boolProp>
+            </TransactionController>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename">~/result.csv</stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
