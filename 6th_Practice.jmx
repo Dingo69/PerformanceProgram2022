@@ -20,7 +20,7 @@
           </elementProp>
           <elementProp name="USERS_COUNT" elementType="Argument">
             <stringProp name="Argument.name">USERS_COUNT</stringProp>
-            <stringProp name="Argument.value">${__P(USERS_COUNT,2000)}</stringProp>
+            <stringProp name="Argument.value">${__P(USERS_COUNT,50)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="RAMP_UP" elementType="Argument">
@@ -179,34 +179,34 @@
           <hashTree/>
         </hashTree>
         <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="bzm - Weighted Switch Controller" enabled="true">
-          <boolProp name="IsRandomChoice">false</boolProp>
+          <boolProp name="IsRandomChoice">true</boolProp>
           <collectionProp name="Weights">
-            <collectionProp name="-1892534077">
+            <collectionProp name="262191963">
               <stringProp name="-1955043590">Open Home Page</stringProp>
               <stringProp name="1572">15</stringProp>
               <stringProp name="3569038">true</stringProp>
             </collectionProp>
-            <collectionProp name="236594818">
+            <collectionProp name="695017827">
               <stringProp name="-1269029934">Open Predefined Date</stringProp>
               <stringProp name="1629">30</stringProp>
               <stringProp name="3569038">true</stringProp>
             </collectionProp>
-            <collectionProp name="474087075">
+            <collectionProp name="-1682604508">
               <stringProp name="-1322414027">Open Random Date</stringProp>
               <stringProp name="1567">10</stringProp>
               <stringProp name="3569038">true</stringProp>
             </collectionProp>
-            <collectionProp name="1682675372">
+            <collectionProp name="1645283265">
               <stringProp name="1302304380">Search by Name</stringProp>
               <stringProp name="1629">30</stringProp>
               <stringProp name="3569038">true</stringProp>
             </collectionProp>
-            <collectionProp name="-1353397081">
+            <collectionProp name="-1324502417">
               <stringProp name="400822073">Open Large Calendar</stringProp>
               <stringProp name="1567">10</stringProp>
               <stringProp name="3569038">true</stringProp>
             </collectionProp>
-            <collectionProp name="263871361">
+            <collectionProp name="-330580903">
               <stringProp name="411443561">Open Contacts</stringProp>
               <stringProp name="53">5</stringProp>
               <stringProp name="3569038">true</stringProp>
@@ -241,12 +241,12 @@
             <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Open random page or not (bzm - Weighted Switch Controller)" enabled="true">
               <boolProp name="IsRandomChoice">false</boolProp>
               <collectionProp name="Weights">
-                <collectionProp name="-599304757">
+                <collectionProp name="-1874689204">
                   <stringProp name="2104398169">Open Random page(Transaction Controller)</stringProp>
                   <stringProp name="1691">50</stringProp>
                   <stringProp name="3569038">true</stringProp>
                 </collectionProp>
-                <collectionProp name="-1700288793">
+                <collectionProp name="-942327492">
                   <stringProp name="-1566017163">Open post or no (Module Controller)</stringProp>
                   <stringProp name="1691">50</stringProp>
                   <stringProp name="3569038">true</stringProp>
@@ -319,12 +319,12 @@
                 <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Open post or no (bzm - Weighted Switch Controller)" enabled="true">
                   <boolProp name="IsRandomChoice">false</boolProp>
                   <collectionProp name="Weights">
-                    <collectionProp name="1664896131">
+                    <collectionProp name="280477062">
                       <stringProp name="-467544562">Open post (bzm - Weighted Switch Controller)</stringProp>
                       <stringProp name="1784">80</stringProp>
                       <stringProp name="3569038">true</stringProp>
                     </collectionProp>
-                    <collectionProp name="70744426">
+                    <collectionProp name="1062696325">
                       <stringProp name="69819">End</stringProp>
                       <stringProp name="1598">20</stringProp>
                       <stringProp name="3569038">true</stringProp>
@@ -335,12 +335,12 @@
                   <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Open post (bzm - Weighted Switch Controller)" enabled="true">
                     <boolProp name="IsRandomChoice">false</boolProp>
                     <collectionProp name="Weights">
-                      <collectionProp name="947726965">
+                      <collectionProp name="-370340479">
                         <stringProp name="1306008871">Open random post</stringProp>
                         <stringProp name="1727">65</stringProp>
                         <stringProp name="3569038">true</stringProp>
                       </collectionProp>
-                      <collectionProp name="-537214511">
+                      <collectionProp name="-1658812821">
                         <stringProp name="-2092180602">Open first post</stringProp>
                         <stringProp name="1634">35</stringProp>
                         <stringProp name="3569038">true</stringProp>
@@ -405,12 +405,12 @@
                       <com.blazemeter.jmeter.control.WeightedSwitchController guiclass="com.blazemeter.jmeter.control.WeightedSwitchControllerGui" testclass="com.blazemeter.jmeter.control.WeightedSwitchController" testname="Add comment or not (bzm - Weighted Switch Controller)" enabled="true">
                         <boolProp name="IsRandomChoice">false</boolProp>
                         <collectionProp name="Weights">
-                          <collectionProp name="512597486">
+                          <collectionProp name="279976345">
                             <stringProp name="-1679915457">Comment</stringProp>
                             <stringProp name="1598">20</stringProp>
                             <stringProp name="3569038">true</stringProp>
                           </collectionProp>
-                          <collectionProp name="70750192">
+                          <collectionProp name="1064866480">
                             <stringProp name="69819">End</stringProp>
                             <stringProp name="1784">80</stringProp>
                             <stringProp name="3569038">true</stringProp>
